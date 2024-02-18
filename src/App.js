@@ -1,4 +1,41 @@
+import { useEffect, useState } from "react";
+
+
+ function renderExpenses(expenses) {
+     const rows = expenses.map((expense) => {
+       return (
+         <tr key={expense._id}>
+           <td>{expense._id}</td>
+           <td>{expense.description}</td>
+           <td>{expense.amount}</td>
+          <td>{new Date(expense.date).toDateString()}</td>
+        </tr>
+       );
+    });
+  
+    return rows;
+   }
+
+   
 function App() {
+  const [expenses, setExpenses] = useState([]);
+
+    const fetchExpenses = async () => {
+        const apiUrl = "https://api-testing-namo-2-17-2024.onrender.com";
+    
+        const endpoint = `${apiUrl}/api/expenses`;
+    
+        const response = await fetch(endpoint);
+    
+        const expenseData = await response.json();
+    
+        setExpenses(expenseData);
+      };
+
+      useEffect(() => {
+            fetchExpenses();
+          }, []);
+
   return (
     <div>
     <form>
@@ -21,6 +58,7 @@ function App() {
         </thead>
 
         <tbody>
+        {renderExpenses(expenses)}
         </tbody>
       </table>
 
