@@ -28,7 +28,7 @@ function App() {
   const [onSuccessfulSave, setOnSuccessfulSave] = useState(false);
 
   const fetchExpenses = async () => {
-    const apiUrl = "https://api-testing-namo-2-17-2024.onrender.com";
+    const apiUrl =  process.env.REACT_APP_API_URL;
 
     const endpoint = `${apiUrl}/api/expenses`;
 
@@ -46,7 +46,7 @@ function App() {
   const saveExpense = async (event) => {
     event.preventDefault();
 
-    const apiUrl = "https://api-testing-namo-2-17-2024.onrender.com";
+    const apiUrl =  process.env.REACT_APP_API_URL;
 
     const endpoint = `${apiUrl}/api/expenses`;
 
